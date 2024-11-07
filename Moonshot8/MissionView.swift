@@ -37,6 +37,9 @@ struct MissionView: View {
                     .containerRelativeFrame(.horizontal) { width, axis in
                         width * 0.6
                     }
+                
+                Text(mission.launchDate?.formatted(date: .long, time: .omitted) ?? "N/A")
+                    .padding(.top)
 
                 VStack(alignment: .leading) {
                     Rectangle()
@@ -66,7 +69,7 @@ struct MissionView: View {
                     HStack(spacing: 10) {
                         ForEach(crew, id: \.role){ crewMember in
                             NavigationLink {
-                                Text("Astronauts Details")
+                                AstronautView(astronaut: crewMember.astronaut)
                             } label: {
                                 HStack {
                                     Image(crewMember.astronaut.id)
@@ -106,7 +109,7 @@ struct MissionView: View {
     let missions: [Mission] = Bundle.main.decode("missions.json")
     let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     
-    MissionView(mission: missions[0], astronauts: astronauts)
+    MissionView(mission: missions[1], astronauts: astronauts)
         .preferredColorScheme(.dark)
     //MissionView()
 }
