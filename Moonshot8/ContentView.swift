@@ -13,13 +13,12 @@ struct ContentView: View {
     
     let columns = [GridItem(.adaptive(minimum: 150))]
     var body: some View {
-        
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(missions) { mission in
                         NavigationLink {
-                            MissionView(mission: mission)
+                            MissionView(mission: mission, astronauts: astronauts)
                         } label: {
                             VStack {
                                 Image(mission.image)
